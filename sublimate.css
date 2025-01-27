@@ -266,11 +266,16 @@ a:hover {
     border-color: var(--color);
 }
 
+p {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
 :last-child {
     margin-bottom: 0;
 }
 
-header, :not(body) > footer {
+header, footer {
     margin-left: calc(-1 * var(--spacing));
     margin-right: calc(-1 * var(--spacing));
 }
@@ -281,6 +286,10 @@ header {
 
 footer {
     margin-top: var(--spacing);
+}
+
+body > footer {
+    width: 100vw;
 }
 
 body > header {
@@ -320,6 +329,7 @@ button, a, input[type="submit"], select {
 
 :not(p, h1, h2, h3, h4, h5, h6, a, abbr, acronym, b, bdo, big, br, button, cite, code, dfn, em, i, img, input, kbd, label, map, object, output, q, samp, script, select, small, span, strong, sub, sup, textarea, time, tt, var) > img {
     width: min(30rem, 100%);
+    display: block;
     margin-left: auto;
     margin-right: auto;
 }
@@ -328,6 +338,7 @@ table {
     border-style: solid;
     border-spacing: 0;
     border-radius: var(--border-radius);
+    width: min(30rem, 100%);
     margin-left: auto;
     margin-right: auto;
 }
