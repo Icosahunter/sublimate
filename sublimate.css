@@ -176,13 +176,13 @@ summary {
     --dm-panel-background: #111;
     --dm-input-background: #aaa;
     --dm-color: #fff;
-    --dm-accent: #ff5cad;
+    --dm-accent: #7bbfdaff;
 
     --lm-background: #fff;
     --lm-panel-background: #efefef;
     --lm-input-background: #ccc;
     --lm-color: #000;
-    --lm-accent: #9900ff;
+    --lm-accent: #00668cff;
 }
 
 @media (prefers-color-scheme: light) {
@@ -238,9 +238,16 @@ fieldset, article, header, footer {
     padding: var(--spacing);
 }
 
-header, footer {
-    margin-left: calc(-1 * var(--spacing));
-    margin-right: calc(-1 * var(--spacing));
+fieldset, article {
+    border-radius: var(--border-radius);
+}
+
+fieldset {
+    border-style: none;
+}
+
+legend {
+    margin: 0;
 }
 
 a {
@@ -255,12 +262,17 @@ a:hover {
 * {
     margin-top: 0;
     margin-bottom: var(--spacing);
-    border-width: 2px;
+    border-width: 1px;
     border-color: var(--color);
 }
 
 :last-child {
     margin-bottom: 0;
+}
+
+header, :not(body) > footer {
+    margin-left: calc(-1 * var(--spacing));
+    margin-right: calc(-1 * var(--spacing));
 }
 
 header {
@@ -274,19 +286,19 @@ footer {
 body > header {
     position: sticky;
     top: 0;
-    width: 100%;
+    left: 0;
+    width: 100vw;
 }
 
-body > footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+label, input:not([type="checkbox"], [type="radio"]) {
+    display: block;
 }
 
 button, select, textarea, input:not([type="checkbox"], [type="radio"], [type="range"]) {
     background: var(--input-background);
     border-radius: var(--border-radius);
     border-width: 0;
+    margin-bottom: var(--spacing);
 }
 
 button, a, input[type="submit"], select {
@@ -308,12 +320,16 @@ button, a, input[type="submit"], select {
 
 :not(p, h1, h2, h3, h4, h5, h6, a, abbr, acronym, b, bdo, big, br, button, cite, code, dfn, em, i, img, input, kbd, label, map, object, output, q, samp, script, select, small, span, strong, sub, sup, textarea, time, tt, var) > img {
     width: min(30rem, 100%);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 table {
     border-style: solid;
     border-spacing: 0;
     border-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 th {
@@ -330,4 +346,9 @@ td {
 
 :is(td, th):not(:first-child) {
     border-left-style: solid;
+}
+
+hr {
+    border-style: solid;
+    border-width: 1px 0 0 0;
 }
