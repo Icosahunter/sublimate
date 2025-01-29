@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*
 -------------------------------------------------------------------------------
-Condensate CSS
+Sublimate CSS
 Version: 0.1
 Licensed under MIT
 -------------------------------------------------------------------------------
@@ -12,7 +12,9 @@ Table of contents:
   1.  CSS Variables -------------------------------------------- [sec-01]
   2.  Base Styles ---------------------------------------------- [sec-02]
   3.  Typography ----------------------------------------------- [sec-03]
-  4.  Buttons, Inputs, Forms ----------------------------------- [sec-04]
+  4.  Body, Header, & Footer ----------------------------------- [sec-04]
+  5.  Forms & Inputs ------------------------------------------- [sec-05]
+  6.  Media & Tables ------------------------------------------- [sec-06]
 */
 
 /*
@@ -21,7 +23,7 @@ Table of contents:
 
   Notes:
   - modern-normalize v2.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize
-  - Modified for use with Condensate CSS
+  - Modified for use with Sublimate CSS
   - Comments have been removed
 -------------------------------------------------------------------------------
 */
@@ -180,8 +182,8 @@ summary {
     --dm-accent: #7bbfda;
 
     --lm-background: #fff;
-    --lm-panel-background: #efefef;
-    --lm-input-background: #ccc;
+    --lm-panel-background: #eee;
+    --lm-input-background: #ddd;
     --lm-color: #000;
     --lm-accent: #00668c;
 }
@@ -208,7 +210,93 @@ summary {
 
 /*
 -------------------------------------------------------------------------------
-2.  Styles [sec-02]
+2.  Base Styles [sec-02]
+-------------------------------------------------------------------------------
+*/
+
+*, input {
+    box-sizing: border-box;
+    margin-top: var(--spacing);
+    margin-bottom: var(--spacing);
+    border-width: 1px;
+    border-color: var(--color);
+    accent-color: var(--accent);
+}
+
+:first-child {
+    margin-top: 0;
+}
+
+:last-child {
+    margin-bottom: 0;
+}
+
+/*
+-------------------------------------------------------------------------------
+3.  Typography [sec-03]
+-------------------------------------------------------------------------------
+*/
+
+p {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent);
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+code, kbd, samp, output {
+    background: var(--panel-background);
+    padding: var(--spacing);
+    border-radius: var(--border-radius);
+    font-family: monospace;
+}
+
+code {
+    display: block;
+}
+
+mark {
+    background: var(--accent);
+    border-radius: var(--border-radius);
+    padding: 0 0.3em 0 0.3em;
+}
+
+:is(ol, ul, dl) > * {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+blockquote {
+    border-width: var(--border-width);
+    border-left-style: solid;
+    text-align: justify;
+    text-justify: inter-word;
+    padding: var(--spacing);
+    margin-left: var(--spacing);
+}
+
+article {
+    background: var(--panel-background);
+    padding: var(--spacing);
+    border-radius: var(--border-radius);
+}
+
+hr {
+    border-style: solid;
+    border-width: var(--border-width) 0 0 0;
+}
+
+/*
+-------------------------------------------------------------------------------
+4.  Body, Header, & Footer [sec-04]
 -------------------------------------------------------------------------------
 */
 
@@ -218,75 +306,6 @@ body {
     font-family: sans-serif;
     padding-left: var(--spacing);
     padding-right: var(--spacing);
-}
-
-@media (min-aspect-ratio: 1.2) {
-    body > * {
-        width: 60vw;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-
-@media (max-aspect-ratio: 1.2) {
-    body > * {
-        width: 100%;
-    }
-}
-
-form, article, code, kbd, article, code, kbd, samp, output {
-    background: var(--panel-background);
-    padding: var(--spacing);
-    border-radius: var(--border-radius);
-}
-
-code {
-    display: block;
-}
-
-code, kbd, samp, output {
-    font-family: monospace;
-}
-
-fieldset {
-    background: var(--background);
-    border-radius: var(--border-radius);
-    border-style: none;
-}
-
-legend {
-    margin: 0;
-}
-
-a {
-    text-decoration: none;
-    color: var(--accent);
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-* {
-    box-sizing: border-box;
-    margin-top: var(--spacing);
-    margin-bottom: var(--spacing);
-    border-width: 1px;
-    border-color: var(--color);
-    accent-color: var(--accent);
-}
-
-p {
-    text-align: justify;
-    text-justify: inter-word;
-}
-
-:first-child {
-    margin-top: 0;
-}
-
-:last-child {
-    margin-bottom: 0;
 }
 
 body > :is(header, footer) {
@@ -308,34 +327,81 @@ body > header {
     z-index: 9999;
 }
 
+@media (min-aspect-ratio: 1.2) {
+    body > * {
+        width: 60vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-aspect-ratio: 1.2) {
+    body > * {
+        width: 100%;
+    }
+}
+
+/*
+-------------------------------------------------------------------------------
+5.  Forms & Inputs [sec-05]
+-------------------------------------------------------------------------------
+*/
+
+form {
+    background: var(--panel-background);
+    padding: var(--spacing);
+    border-radius: var(--border-radius);
+}
+
+fieldset {
+    background: var(--background);
+    border-radius: var(--border-radius);
+    border-style: none;
+}
+
+legend {
+    margin: 0;
+}
+
 label, input:not([type="checkbox"], [type="radio"]) {
     display: block;
 }
 
-button, select, textarea, input:not([type="checkbox"], [type="radio"], [type="range"]) {
-    background: var(--input-background);
-    border-radius: var(--border-radius);
-    border-width: 0;
-    margin-bottom: var(--spacing);
-}
-
-mark {
-    background: var(--accent);
-    border-radius: var(--border-radius);
-    padding: 0 0.3em 0 0.3em;
-}
-
-button, a, input[type="submit"], select {
+input:is([type="file"], [type="color"], [type="submit"], [type="button"], [type="reset"], [type="radio"], [type="checkbox"]), select {
     cursor: pointer;
 }
 
-:is(button, input:is([type="submit"], type="button", type="re"), select):hover {
+input:is([type="date"], [type="datetime-local"], [type="time"]) {
+    cursor: text;
+}
+
+input[type="range"] {
+    cursor: grab;
+}
+
+input[type="range"]:active {
+    cursor: grabbing;
+}
+
+button, select, textarea, input:not([type="checkbox"], [type="radio"], [type="range"], [type="file"]) {
+    background: var(--input-background);
+    border-radius: var(--border-radius);
+    border-width: 0;
+}
+
+button, select, input:not([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="color"]) {
+    padding: 2px 5px 2px 5px;
+}
+
+:is(button, input:is([type="submit"], [type="button"], [type="reset"]), select):hover {
     filter: brightness(75%);
 }
 
-:is(ol, ul, dl) > * {
-    margin-bottom: calc(0.5 * var(--spacing));
-}
+/*
+-------------------------------------------------------------------------------
+6.  Media & Tables [sec-06]
+-------------------------------------------------------------------------------
+*/
 
 :is(abbr, b, bdi, bdo, blockquote, caption, cite, code, dd, del, dt, em, figcaption, h1, h2, h3, h4, h5, h6, i, ins, kbd, label, legend, li, mark, p, pre, q, rt, ruby, s, samp, small, strong, sub, sup, u) > img, figure, video {
     display: inline;
@@ -375,18 +441,4 @@ td {
     padding-right: calc(0.3 * var(--spacing));
     padding-top: calc(0.15 * var(--spacing));
     padding-bottom: calc(0.15 * var(--spacing));
-}
-
-hr {
-    border-style: solid;
-    border-width: var(--border-width) 0 0 0;
-}
-
-blockquote {
-    border-width: var(--border-width);
-    border-left-style: solid;
-    text-align: justify;
-    text-justify: inter-word;
-    padding: var(--spacing);
-    margin-left: var(--spacing);
 }
