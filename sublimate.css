@@ -254,12 +254,16 @@ a:hover {
 
 code, kbd, samp, output {
     background: var(--panel-background);
-    padding: var(--spacing);
     border-radius: var(--border-radius);
     font-family: monospace;
 }
 
+kbd, samp, output {
+    padding: 0.25em;
+}
+
 code {
+    padding: var(--spacing);
     display: block;
 }
 
