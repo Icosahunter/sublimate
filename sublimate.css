@@ -170,19 +170,20 @@ summary {
 
 :root {
     --spacing: 1rem;
-    --border-radius: 0.25rem;
+    --border-radius: 0.35rem;
+    --border-width: 2px;
 
-    --dm-background: #000;
-    --dm-panel-background: #111;
+    --dm-background: #080808;
+    --dm-panel-background: #121212;
     --dm-input-background: #aaa;
-    --dm-color: #fff;
-    --dm-accent: #7bbfdaff;
+    --dm-color: #ccc;
+    --dm-accent: #7bbfda;
 
     --lm-background: #fff;
     --lm-panel-background: #efefef;
     --lm-input-background: #ccc;
     --lm-color: #000;
-    --lm-accent: #00668cff;
+    --lm-accent: #00668c;
 }
 
 @media (prefers-color-scheme: light) {
@@ -233,16 +234,23 @@ body {
     }
 }
 
-fieldset, article, header, footer {
+form, article, code, kbd, article, code, kbd, samp, output {
     background: var(--panel-background);
     padding: var(--spacing);
-}
-
-fieldset, article {
     border-radius: var(--border-radius);
 }
 
+code {
+    display: block;
+}
+
+code, kbd, samp, output {
+    font-family: monospace;
+}
+
 fieldset {
+    background: var(--background);
+    border-radius: var(--border-radius);
     border-style: none;
 }
 
@@ -260,10 +268,12 @@ a:hover {
 }
 
 * {
-    margin-top: 0;
+    box-sizing: border-box;
+    margin-top: var(--spacing);
     margin-bottom: var(--spacing);
     border-width: 1px;
     border-color: var(--color);
+    accent-color: var(--accent);
 }
 
 p {
@@ -271,21 +281,19 @@ p {
     text-justify: inter-word;
 }
 
+:first-child {
+    margin-top: 0;
+}
+
 :last-child {
     margin-bottom: 0;
 }
 
-header, footer {
+body > :is(header, footer) {
+    background: var(--panel-background);
+    padding: var(--spacing);
     margin-left: calc(-1 * var(--spacing));
     margin-right: calc(-1 * var(--spacing));
-}
-
-header {
-    margin-bottom: var(--spacing);
-}
-
-footer {
-    margin-top: var(--spacing);
 }
 
 body > footer {
@@ -297,6 +305,7 @@ body > header {
     top: 0;
     left: 0;
     width: 100vw;
+    z-index: 9999;
 }
 
 label, input:not([type="checkbox"], [type="radio"]) {
@@ -310,11 +319,17 @@ button, select, textarea, input:not([type="checkbox"], [type="radio"], [type="ra
     margin-bottom: var(--spacing);
 }
 
+mark {
+    background: var(--accent);
+    border-radius: var(--border-radius);
+    padding: 0 0.3em 0 0.3em;
+}
+
 button, a, input[type="submit"], select {
     cursor: pointer;
 }
 
-:is(button, input[type="submit"], select):hover {
+:is(button, input:is([type="submit"], type="button", type="re"), select):hover {
     filter: brightness(75%);
 }
 
@@ -322,21 +337,26 @@ button, a, input[type="submit"], select {
     margin-bottom: calc(0.5 * var(--spacing));
 }
 
-:is(p, h1, h2, h3, h4, h5, h6, a, abbr, acronym, b, bdo, big, br, button, cite, code, dfn, em, i, img, input, kbd, label, map, object, output, q, samp, script, select, small, span, strong, sub, sup, textarea, time, tt, var) > img {
+:is(abbr, b, bdi, bdo, blockquote, caption, cite, code, dd, del, dt, em, figcaption, h1, h2, h3, h4, h5, h6, i, ins, kbd, label, legend, li, mark, p, pre, q, rt, ruby, s, samp, small, strong, sub, sup, u) > img, figure, video {
+    display: inline;
     height: 1.5em;
+    width: auto;
     vertical-align: middle;
+    margin-left: 0;
+    margin-right: 0;
 }
 
-:not(p, h1, h2, h3, h4, h5, h6, a, abbr, acronym, b, bdo, big, br, button, cite, code, dfn, em, i, img, input, kbd, label, map, object, output, q, samp, script, select, small, span, strong, sub, sup, textarea, time, tt, var) > img {
+img, figure, video {
     width: min(30rem, 100%);
+    height: auto;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
 table {
-    border-style: solid;
     border-spacing: 0;
+    border-collapse: separate;
     border-radius: var(--border-radius);
     width: min(30rem, 100%);
     margin-left: auto;
@@ -344,8 +364,10 @@ table {
 }
 
 th {
+    border-width: var(--border-width);
     border-bottom-style: solid;
     padding: calc(0.3 * var(--spacing));
+    text-align: left;
 }
 
 td {
@@ -355,11 +377,16 @@ td {
     padding-bottom: calc(0.15 * var(--spacing));
 }
 
-:is(td, th):not(:first-child) {
-    border-left-style: solid;
-}
-
 hr {
     border-style: solid;
-    border-width: 1px 0 0 0;
+    border-width: var(--border-width) 0 0 0;
+}
+
+blockquote {
+    border-width: var(--border-width);
+    border-left-style: solid;
+    text-align: justify;
+    text-justify: inter-word;
+    padding: var(--spacing);
+    margin-left: var(--spacing);
 }
