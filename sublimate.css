@@ -252,6 +252,14 @@ a:hover {
     text-decoration: underline;
 }
 
+a:has(h1, h2, h3, h4, h5, h6) {
+    color: var(--color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color);
+}
+
 code, kbd, samp, output {
     background: var(--panel-background);
     border-radius: var(--border-radius);
@@ -343,6 +351,50 @@ body > header {
     body > * {
         width: 100%;
     }
+}
+
+header > nav :is(ul, ol) {
+    padding: 0;
+}
+
+header > nav li > :is(ul, ol) {
+    background: var(--panel-background);
+    position: absolute;
+    list-style: none;
+    left: calc(-1 * var(--spacing));
+    padding: var(--spacing);
+    margin: 0;
+    display: none;
+    width: 10rem;
+}
+
+header > nav * > * > * > li > :is(ul, ol) {
+    top: calc(-1 * var(--spacing));
+    left: 100%;
+}
+
+header > nav li:hover > :is(ul, ol){
+    display: block;
+}
+
+header > nav > :is(ul, ol) > li {
+    padding: 0;
+    display: inline;
+    margin-right: var(--spacing);
+}
+
+header > nav li {
+    position: relative;
+}
+
+footer > nav > :is(ul, ol){
+    margin-top: 0;
+    display: inline-block;
+    vertical-align: top;
+}
+
+nav :is(ul, ol){
+    list-style: none;
 }
 
 /*
