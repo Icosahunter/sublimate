@@ -15,6 +15,7 @@ Table of contents:
   4.  Body, Header, & Footer ----------------------------------- [sec-04]
   5.  Forms & Inputs ------------------------------------------- [sec-05]
   6.  Media & Tables ------------------------------------------- [sec-06]
+  7.  Navs & Details ------------------------------------------- [sec-07]
 */
 
 /*
@@ -178,14 +179,14 @@ summary {
     --dm-background: #080808;
     --dm-panel-background: #121212;
     --dm-input-background: #aaa;
-    --dm-color: #ccc;
+    --dm-font-color: #ccc;
     --dm-accent: #7bbfda;
 
     --lm-background: #fff;
     --lm-panel-background: #eee;
     --lm-input-background: #ddd;
-    --lm-color: #000;
-    --lm-accent: #00668c;
+    --lm-font-color: #000;
+    --lm-accent-color: #00668c;
 }
 
 @media (prefers-color-scheme: light) {
@@ -193,8 +194,8 @@ summary {
         --background: var(--lm-background);
         --panel-background: var(--lm-panel-background);
         --input-background: var(--lm-input-background);
-        --color: var(--lm-color);
-        --accent: var(--lm-accent);
+        --font-color: var(--lm-font-color);
+        --accent-color: var(--lm-accent-color);
     }
 }
 
@@ -203,8 +204,8 @@ summary {
         --background: var(--dm-background);
         --panel-background: var(--dm-panel-background);
         --input-background: var(--dm-input-background);
-        --color: var(--dm-color);
-        --accent: var(--dm-accent);
+        --font-color: var(--dm-font-color);
+        --accent-color: var(--dm-accent-color);
     }
 }
 
@@ -219,8 +220,8 @@ summary {
     margin-top: var(--spacing);
     margin-bottom: var(--spacing);
     border-width: 1px;
-    border-color: var(--color);
-    accent-color: var(--accent);
+    border-color: var(--font-color);
+    accent-color: var(--accent-color);
 }
 
 :first-child {
@@ -244,7 +245,7 @@ p {
 
 a {
     text-decoration: none;
-    color: var(--accent);
+    color: var(--accent-color);
     cursor: pointer;
 }
 
@@ -253,11 +254,11 @@ a:hover {
 }
 
 a:has(h1, h2, h3, h4, h5, h6) {
-    color: var(--color);
+    color: var(--font-color);
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: var(--color);
+    color: var(--font-color);
 }
 
 code, kbd, samp, output {
@@ -276,7 +277,7 @@ code {
 }
 
 mark {
-    background: var(--accent);
+    background: var(--accent-color);
     border-radius: var(--border-radius);
     padding: 0 0.3em 0 0.3em;
 }
@@ -314,7 +315,7 @@ hr {
 
 body {
     background: var(--background);
-    color: var(--color);
+    color: var(--font-color);
     font-family: sans-serif;
     padding-left: var(--spacing);
     padding-right: var(--spacing);
@@ -341,7 +342,7 @@ body > header {
 
 @media (min-aspect-ratio: 1.2) {
     body > * {
-        width: 60vw;
+        width: 45vw;
         margin-left: auto;
         margin-right: auto;
     }
@@ -351,50 +352,6 @@ body > header {
     body > * {
         width: 100%;
     }
-}
-
-header > nav :is(ul, ol) {
-    padding: 0;
-}
-
-header > nav li > :is(ul, ol) {
-    background: var(--panel-background);
-    position: absolute;
-    list-style: none;
-    left: calc(-1 * var(--spacing));
-    padding: var(--spacing);
-    margin: 0;
-    display: none;
-    width: 10rem;
-}
-
-header > nav * > * > * > li > :is(ul, ol) {
-    top: calc(-1 * var(--spacing));
-    left: 100%;
-}
-
-header > nav li:hover > :is(ul, ol){
-    display: block;
-}
-
-header > nav > :is(ul, ol) > li {
-    padding: 0;
-    display: inline;
-    margin-right: var(--spacing);
-}
-
-header > nav li {
-    position: relative;
-}
-
-footer > nav > :is(ul, ol){
-    margin-top: 0;
-    display: inline-block;
-    vertical-align: top;
-}
-
-nav :is(ul, ol){
-    list-style: none;
 }
 
 /*
@@ -427,6 +384,12 @@ input:is([type="file"], [type="color"], [type="submit"], [type="button"], [type=
     cursor: pointer;
 }
 
+//button, select, input:not([type="radio"], [type="checkbox"]) {
+//    background: transparent;
+//    border-style: solid;
+//    color: white;
+//}
+
 input:is([type="date"], [type="datetime-local"], [type="time"]) {
     cursor: text;
 }
@@ -446,7 +409,7 @@ button, select, textarea, input:not([type="checkbox"], [type="radio"], [type="ra
 }
 
 button, select, input:not([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="color"]) {
-    padding: 2px 5px 2px 5px;
+    padding: 0.3em 0.6em 0.3em 0.6em;
 }
 
 :is(button, input:is([type="submit"], [type="button"], [type="reset"]), select):hover {
@@ -459,7 +422,7 @@ button, select, input:not([type="checkbox"], [type="radio"], [type="range"], [ty
 -------------------------------------------------------------------------------
 */
 
-:is(abbr, b, bdi, bdo, blockquote, caption, cite, code, dd, del, dt, em, figcaption, h1, h2, h3, h4, h5, h6, i, ins, kbd, label, legend, li, mark, p, pre, q, rt, ruby, s, samp, small, strong, sub, sup, u) > img, figure, video {
+:is(abbr, b, bdi, bdo, blockquote, caption, cite, code, dd, del, dt, em, figcaption, h1, h2, h3, h4, h5, h6, i, ins, kbd, label, legend, li, mark, p, pre, q, rt, ruby, s, samp, small, strong, sub, sup, u) > :is(img, figure, video) {
     display: inline;
     height: 1.5em;
     width: auto;
@@ -497,4 +460,56 @@ td {
     padding-right: calc(0.3 * var(--spacing));
     padding-top: calc(0.15 * var(--spacing));
     padding-bottom: calc(0.15 * var(--spacing));
+}
+
+/*
+-------------------------------------------------------------------------------
+7.  Navs & Details [sec-07]
+-------------------------------------------------------------------------------
+*/
+
+summary {
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    padding-left: 1em;
+}
+
+summary::before {
+    content: "";
+    width: 0.5em;
+    height: 0.5em;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-color: var(--font-color);
+    position: absolute;
+    top: 0.5em;
+    left: 0;
+    transition: 0.25s;
+    transform-origin: center center;
+    transform: rotate(-45deg);
+}
+
+details > :not(summary) {
+    margin-left: 1em;
+}
+
+details[open] > summary::before {
+    transform: rotate(45deg);
+}
+
+nav * {
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+}
+
+nav > :is(ul, ol) > li {
+    margin-right: var(--spacing);
+    display: inline-block;
+}
+
+nav :is(ul, ol) {
+    list-style: none;
+    margin-top: 1em;
 }
